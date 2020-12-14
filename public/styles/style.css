@@ -1,0 +1,206 @@
+@font-face {
+    font-family: 'goodbyeDespair';
+    src: URL('../goodbyeDespair.ttf') format('truetype');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url('../HopesPeak.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    min-height: 100vh;
+    backdrop-filter: blur(2px);
+    overflow: hidden;
+    transition: background-image 0.2s ease-in-out;
+}
+
+/* HEADER */
+header{
+    height: 40px;
+    background-color: white;
+}
+
+/* SVGs */
+.svgs-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width:100vw;
+    transform: translateY(-20px);
+}
+
+.svg-container{
+  transition-duration: 1000ms;
+}
+
+#gun-container{
+    position: absolute;
+    height: 65vh;
+    width: 55vw;
+    z-index: -2;  
+}
+
+#circle-container{
+    position: absolute;
+    height: 65vh;
+    width: 55vw;
+    z-index: -2;  
+    transform: translate(-3vw,-3.35vh);
+}
+
+#smallcircle-container{
+    position: absolute;
+    height: 65vh;
+    width: 55vw;
+    z-index: -2; 
+    transform: translate(-1.65vw,-1.75vh); 
+}
+
+#gun-container-2{
+    transform: perspective(400px) rotatex(19deg) rotatey(-18deg);
+    position: absolute;
+    height: 65vh;
+    width: 55vw;
+    right: 1vw;
+    bottom: 23vh;
+    z-index: -2;
+}
+
+#circle-container-2{
+    transform: perspective(400px) rotatex(19deg) rotatey(-18deg);
+    position: absolute;
+    height: 65vh;
+    width: 55vw;
+    right: 4.3vw;
+    bottom: 26.5vh;
+    z-index: -2;
+}
+#smallcircle-container-2{
+    transform: perspective(400px) rotatex(19deg) rotatey(-18deg);
+    position: absolute;
+    height: 65vh;
+    width: 55vw;
+    right: 2.8vw;
+    bottom: 25vh;
+    z-index: -2;
+} 
+
+.whitespace{
+    opacity: 0;
+}
+
+.dark{
+    fill: #f24957; 
+}
+
+.light{
+    fill: #f25764; 
+}
+
+.white{
+    stroke:white;
+}
+
+#gun{
+    opacity: .8;
+    animation: rotate 10s infinite;
+    animation-timing-function: linear;
+    height: 100%;
+    width: 100%;
+}
+@keyframes rotate{
+    from{
+    transform: rotate(0deg);
+    }to{
+        transform:rotate(-360deg);
+    }
+}
+
+#circle{
+    opacity: .8;
+    animation: rotate2 5s infinite;
+    animation-timing-function: linear;
+    height: 111%;
+    width: 111%;
+}
+@keyframes rotate2{
+    from{
+    transform: rotate(0deg);
+    }to{
+        transform:rotate(-360deg);
+    }
+}
+#smallcircle{
+    opacity: .8;
+    animation: rotate3 10s infinite;
+    animation-timing-function: linear;
+    height: 106%;
+    width: 106%;
+}
+@keyframes rotate3{
+    from{
+    transform: rotate(0deg);
+    }to{
+        transform:rotate(360deg);
+    }
+}
+
+.menu{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: #403B3F;
+    width: 70vw;
+    margin-left: 2.5vw;
+    border-bottom: solid white;
+    z-index: -1;
+    transition-duration: 1000ms;
+    bottom: 10vh;
+    transform: translateY(1000%);
+}
+
+#login{
+    text-align: center;
+    width: 50vw;
+}
+
+.option{
+    font-family: 'Source Sans Pro';
+    font-size: 2vmax;
+    color: white;
+    border: solid white;
+    border-bottom: 0;
+    padding: 5px;
+    z-index: -1;
+    cursor: pointer;
+}
+
+.option:hover{
+     background-color: #f25764; 
+   /*  background-color: rgb(73, 186, 224); */
+}
+
+button{
+    background: transparent;
+    outline:none;
+    border: none;
+    position: absolute;
+    top:3vmax;
+    left:0;
+    max-height:5vmax;
+    width:3vw;
+    color: white;
+    cursor: pointer;
+}
+
+.preload{
+    transition: none !important;
+}
