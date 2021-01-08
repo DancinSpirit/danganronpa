@@ -193,14 +193,12 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phon
 }
 
 musicButton.addEventListener("click", () => {
-  console.log(audio.paused)
   if (audio.paused) {
     audio.play();
     musicOn = true;
     
   } else {
     musicOn = false;
-    audio.pause();
   }
 });
 
