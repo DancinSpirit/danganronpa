@@ -8,7 +8,7 @@ const ctrl = require("./controllers");
 
 const app = express();
 
-const PORT = 11037;
+const PORT = process.env.PORT || 11037;
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -20,7 +20,7 @@ app.use(session({
     store: new MongoStore({
         url: "mongodb://localhost:27017/danganronpa"
     }),
-    secret: "Kazami9029",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
