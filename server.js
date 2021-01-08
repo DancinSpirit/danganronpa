@@ -7,7 +7,7 @@ const db = require("./models");
 const ctrl = require("./controllers");
 
 const app = express();
-require("dotev").config()
+require("dotenv").config()
 
 const PORT = process.env.PORT || 11037;
 
