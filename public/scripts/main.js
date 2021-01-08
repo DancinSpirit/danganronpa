@@ -192,20 +192,21 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phon
     /* DO SOMETHING ELSE */
 }
 
-musicButton.addEventListener("click", async () => {
+musicButton.addEventListener("click", () => {
+  console.log(audio.paused)
   if (audio.paused) {
-    await audio.play();
+    audio.play();
     musicOn = true;
     
   } else {
     musicOn = false;
-    await audio.pause();
+    audio.pause();
   }
 });
 
-$("body").on("click", async ()=>{
+$("body").on("click", ()=>{
   if(audio.paused&&musicOn){
-    await audio.play();
+    audio.play();
   }
 })
 
