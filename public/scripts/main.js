@@ -194,18 +194,18 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phon
 
 musicButton.addEventListener("click", () => {
   if (audio.paused) {
-    audio.play();
+    await audio.play();
     musicOn = true;
     
   } else {
     musicOn = false;
-    audio.pause();
+    await audio.pause();
   }
 });
 
 $("body").on("click", ()=>{
   if(audio.paused&&musicOn){
-    audio.play();
+    await audio.play();
   }
 })
 
