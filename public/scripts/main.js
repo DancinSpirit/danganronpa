@@ -193,21 +193,23 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phon
 }
 
 musicButton.addEventListener("click", () => {
- 
+  if (audio.paused) {
     audio.play();
-});
-
-$("body").on("click", ()=>{
-  if(audio.paused&&musicOn){
-    audio.play();
+    musicOn = true;
+    
+  } else {
+    musicOn = false;
+    audio.pause();
   }
-})
+});
 
 start.addEventListener("click", ()=>{
     start.style.transform = "translateX(-1000%)";
     login.style.transform = "translateY(0%)";
     registerText.style.transform = "translateX(0%)";
     gun.play();
+    if(musicOn)
+    audio.play();
 });
 
 let resizeTimer;
