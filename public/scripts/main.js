@@ -26,6 +26,15 @@ const playerMenuState = function(){
   $(".player-menu").css("transform", "translateY(0%)");
 }
 
+const loginState = function(){
+  $(".svg-container").css("right", "");
+  $(".svg-container").css("top", "");
+  $("#gun-container").css("transform", "")
+  $("#circle-container").css("transform", "translate(-3vw,-3.35vh)")
+  $("#smallcircle-container").css("translate(-1.65vw,-1.75vh)")
+  $(".player-menu").css("transform", "translateY(1000%)");
+}
+
 const logoutFunction = function(){
   $.ajax({
     method: "POST",
@@ -38,6 +47,7 @@ const logoutFunction = function(){
       $("#register-text").html("Logged Out");
       $("#nav-buttons").css("transform", "translateX(-88%)");
       $("#topright-text").html("Login Screen");
+      loginState();
     }
   })
 }
