@@ -10,7 +10,7 @@
 }
 
 body{
-    background-image: url('../HopesPeak.png');
+    background-image: url('/visuals/HopesPeak.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
@@ -22,8 +22,95 @@ body{
 
 /* HEADER */
 header{
-    height: 40px;
+    height: 8vh;
     background-color: white;
+    display: flex;
+}
+
+#left{
+    width: 25%;
+    background-color: black;
+    z-index: 1;
+}
+
+#left::before{
+    content: "";
+    background-color: black;
+    padding-left: 10vw;
+    width: 25%;
+    height: 8vh;
+    z-index: -1;
+    position: absolute;
+    transform: skew(-40deg, 0deg);
+    border-right: solid #9A2323 1vh;
+}
+
+#left-text{
+    font-family: 'Source Sans Pro';
+    color:white;
+    font-size: min(5vw,3vh);
+    padding-left: 1vh;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+#topleft{
+    height: 50%;
+}
+
+#nav-buttons{
+    display: flex;
+    align-content: center;
+    transform: translateX(-88%);
+    transition: 1000ms;
+}
+
+#bottomleft{
+    height: 50%;
+    display: flex;
+    align-content: center;
+}
+
+button, a{
+    background: transparent;
+    outline:none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    padding-left: 1.2vh;
+    padding-right: 1vh;
+}
+
+#right{
+    width: 75%;
+}
+
+#topright{
+    height: 50%;
+    background-color: #403B3F;
+}
+
+#topright-text{
+    font-family: 'goodbyeDespair';
+    color: white;
+    font-size: 4vh;
+    text-align: right;
+    padding-right: 1vh;
+}
+
+#bottomright{
+    height: 50%;
+}
+
+.bottomright-text{
+    font-family: 'Source Sans Pro';
+    font-size: 3vh;
+    text-align: right;
+    transform: translateX(300%);
+    transition: 1000ms;
+    position: absolute;
+    right: 1vh;
 }
 
 /* SVGs */
@@ -32,66 +119,34 @@ header{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height:100vh;
+    height:92vh;
     width:100vw;
-    transform: translateY(-20px);
 }
 
 .svg-container{
   transition-duration: 1000ms;
+  height: 65vh;
+  width: 55vw;
+  right: 22.5%;
+  top: 21.5%;
 }
 
 #gun-container{
     position: absolute;
-    height: 65vh;
-    width: 55vw;
     z-index: -2;  
 }
 
 #circle-container{
     position: absolute;
-    height: 65vh;
-    width: 55vw;
     z-index: -2;  
     transform: translate(-3vw,-3.35vh);
 }
 
 #smallcircle-container{
     position: absolute;
-    height: 65vh;
-    width: 55vw;
     z-index: -2; 
     transform: translate(-1.65vw,-1.75vh); 
 }
-
-#gun-container-2{
-    transform: perspective(400px) rotatex(19deg) rotatey(-18deg);
-    position: absolute;
-    height: 65vh;
-    width: 55vw;
-    right: 1vw;
-    bottom: 23vh;
-    z-index: -2;
-}
-
-#circle-container-2{
-    transform: perspective(400px) rotatex(19deg) rotatey(-18deg);
-    position: absolute;
-    height: 65vh;
-    width: 55vw;
-    right: 4.3vw;
-    bottom: 26.5vh;
-    z-index: -2;
-}
-#smallcircle-container-2{
-    transform: perspective(400px) rotatex(19deg) rotatey(-18deg);
-    position: absolute;
-    height: 65vh;
-    width: 55vw;
-    right: 2.8vw;
-    bottom: 25vh;
-    z-index: -2;
-} 
 
 .whitespace{
     opacity: 0;
@@ -153,23 +208,21 @@ header{
     }
 }
 
+/* MENUS */
 .menu{
     position: absolute;
     display: flex;
     flex-direction: column;
     background-color: #403B3F;
-    width: 70vw;
-    margin-left: 2.5vw;
     border-bottom: solid white;
-    z-index: -1;
     transition-duration: 1000ms;
-    bottom: 10vh;
     transform: translateY(1000%);
 }
 
-#login{
-    text-align: center;
-    width: 50vw;
+.player-menu{
+    bottom: 6vh;
+    left: 5vh;
+    width: 70%;
 }
 
 .option{
@@ -179,28 +232,48 @@ header{
     border: solid white;
     border-bottom: 0;
     padding: 5px;
-    z-index: -1;
     cursor: pointer;
 }
 
 .option:hover{
-     background-color: #f25764; 
+    background-color: #f25764; 
    /*  background-color: rgb(73, 186, 224); */
 }
 
-button{
-    background: transparent;
-    outline:none;
-    border: none;
-    position: absolute;
-    top:3vmax;
-    left:0;
-    max-height:5vmax;
-    width:3vw;
-    color: white;
-    cursor: pointer;
+#start{
+    text-align: center;
+    width: 50vw;
+    transform: translateY(0%);
 }
 
-.preload{
+.form{
+    border: solid white;
+    color: white;
+    padding: 10px;
+    font-family: 'Source Sans Pro';
+    display: flex;
+    justify-content: center;
+}
+
+.form-input{
+    display: block;
+    margin-bottom: 10px;
+}
+
+#login-button{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.resize-animation-stopper * {
+    animation: none !important;
     transition: none !important;
+}  
+
+.preload * {
+ -webkit-transition: none !important;
+ -moz-transition: none !important;
+ -ms-transition: none !important;
+ -o-transition: none !important;
+ transition: none !important;
 }

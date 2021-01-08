@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'goodbyeDespair';
+    src: URL('goodbyeDespair.ttf') format('truetype');
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+  background-image: url(/visuals/DormRoom.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  backdrop-filter: blur(5px);
+  min-height: 100vh;
+  overflow:hidden;
+  transition: background-image 0.2s ease-in-out;
+  display: flex;
+}
+
+button{
+    background: transparent;
+    outline:none;
+    border: none;
+    position: absolute;
+    top:3vmax;
+    left:0;
+    max-height:5vmax;
+    width:3vw;
+    color: white;
+    cursor: pointer;
+}
+#textbox::-webkit-scrollbar {
+  display: none;
+}
+#textbox{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  margin: auto;
+  color: white;
+  height: 80vh;
+  width: 90vw;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow-y: auto;
+}
+#bottom{
+  height: 1%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.boxtext{
+  user-select: none;
+  font-family: 'Source Sans Pro';
+  font-size: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.optionquestion{
+    text-align: center;
+}
+
+.option{
+  text-align: center;
+  color: gray;
+}
+
+choice{
+  color: white;
+}
+
+#hidden-text{
+    display: none;
+}
