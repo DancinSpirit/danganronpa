@@ -203,13 +203,17 @@ musicButton.addEventListener("click", () => {
   }
 });
 
+body.addEventListener("click", ()=>{
+  if(song.paused&&music){
+    song.play();
+  }
+})
+
 start.addEventListener("click", ()=>{
     start.style.transform = "translateX(-1000%)";
     login.style.transform = "translateY(0%)";
     registerText.style.transform = "translateX(0%)";
     gun.play();
-    if(musicOn)
-    audio.play();
 });
 
 let resizeTimer;
