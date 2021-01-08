@@ -12,7 +12,9 @@ const gamemasterMenu = document.getElementById("gamemaster-menu");
 const start = document.getElementById("start");
 const musicButton = document.getElementById("music");
 const createCharacter = document.getElementById("new-player-button");
+if(player)
 player = JSON.parse(player.replace("[","").replace("]",""));
+if(gamestate)
 gamestate = JSON.parse(gamestate);
 
 const playerMenuState = function(){

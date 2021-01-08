@@ -9,7 +9,7 @@ const ctrl = require("./controllers");
 const app = express();
 require("dotenv").config()
 
-const PORT = process.env.PORT || 11037;
+const PORT = process.env.PORT;
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -19,7 +19,7 @@ app.use(methodOverride("_method"));
 
 app.use(session({
     store: new MongoStore({
-        url: "mongodb://localhost:27017/danganronpa"
+        url: process.env.MONGODB_URI
     }),
     secret: process.env.SECRET,
     resave: false,
