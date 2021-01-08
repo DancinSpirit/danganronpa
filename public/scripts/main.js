@@ -203,9 +203,9 @@ musicButton.addEventListener("click", () => {
   }
 });
 
-body.addEventListener("click", ()=>{
-  if(song.paused&&music){
-    song.play();
+$("body").on("click", ()=>{
+  if(audio.paused&&musicOn){
+    audio.play();
   }
 })
 
