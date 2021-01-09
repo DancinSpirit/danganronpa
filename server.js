@@ -3,7 +3,6 @@ const methodOverride = require("method-override");
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-const db = require("./models");
 const ctrl = require("./controllers");
 
 const app = express();

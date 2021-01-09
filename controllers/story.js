@@ -3,6 +3,7 @@ const express = require("express");
 
 /* Interal Modules */
 const db = require("../models");
+const bot = require("../bot.js");
 
 /* Instanced Modules */
 const router = express.Router();
@@ -44,7 +45,13 @@ router.get("/:chapter/:day/:time/:player", async function (req,res){
 router.post("/:chapter/:day/:time/:player/:form", async function(req,res){
     try{
         const player = await db.Player.findById(req.params.player.trim());
-        await db.Story.updateOne({chapter: req.params.chapter.trim(), day: req.params.day.trim(), time: req.params.time.trim(), player: player.name},{$push: {story: {story: req.params.form}}});
+        if(player.name=="Cameron")
+            sentMessage = await bot.channels.cache.get("664307849090039839").send(req.params.form);
+        if(player.name=="Kristian")
+            sentMessage = await bot.channels.cache.get("664627996174581800").send(req.params.form);
+        if(player.name=="Tim")
+            sentMessage = await bot.channels.cache.get("664628115984613406").send(req.params.form);
+        //await db.Story.updateOne({chapter: req.params.chapter.trim(), day: req.params.day.trim(), time: req.params.time.trim(), player: player.name},{$push: {story: {story: req.params.form, id: sentMessage.id}}});
         res.send(req.params.form)
     }catch(err){
         console.log(err);
