@@ -53,14 +53,11 @@ const logoutFunction = function(){
       $("#register-text").html("Logged Out");
       $("#nav-buttons").css("transform", "translateX(-88%)");
       $("#topright-text").html("Login Screen");
+      $("#continue").unbind("click");
       loginState();
     }
   })
 }
-
-$("#continue").on("click", ()=>{
-  window.open(`/story/${gamestate.currentChapter}/${gamestate.currentDay}/${gamestate.currentTime}/${player._id}`,'_self',false);
-})
 
 $("audio").prop("volume", 0.2);
 
@@ -89,7 +86,13 @@ $(".player-choice").click(function(e){
     url: "/players",
     data: {player: e.target.id},
     success: function(res){
-      ($(".menu").css("transform", "translate(0%,1000%)"));
+      playerLogin(res);
+    }
+  })
+})
+
+const playerLogin = function(res){
+  ($(".menu").css("transform", "translate(0%,1000%)"));
       loginMessage.style.transform = "translateX(0%)";
       $("#nav-buttons").css("transform","translateX(0%)");
       $("#login-message").html(res.ultimateName);
@@ -97,14 +100,15 @@ $(".player-choice").click(function(e){
       player = res;
       $(".svg-container").addClass("svg-container-2");
       playerMenuState();
-    }
-  })
-})
+      $("#continue").on("click", ()=>{
+        window.open(`/story/${gamestate.currentChapter}/${gamestate.currentDay}/${gamestate.currentTime}/${player._id}`,'_self',false);
+      })
+}
 
-createCharacter.addEventListener("click", ()=>{
+/* createCharacter.addEventListener("click", ()=>{
   $("#player-create").css("transform", "translateY(0%)");
   $("#gamemaster-menu").css("transform", "translateX(-1000%)");
-})
+}) */
 
 $("#return-login").on("click", ()=>{
   logoutFunction();
@@ -122,6 +126,9 @@ const error = function(){
 }
 
 if(player){
+  $("#continue").on("click", ()=>{
+    window.open(`/story/${gamestate.currentChapter}/${gamestate.currentDay}/${gamestate.currentTime}/${player._id}`,'_self',false);
+  })
   start.style.transform = "translateX(-1000%)";
   //playerMenu.style.transform = "translateY(0%)";
   loginMessage.style.transform = "translateX(0%)";
@@ -136,8 +143,6 @@ else if(user){
       gamemasterMenu.style.transform = "translateY(0%)";
       loginMessage.style.transform = "translateX(0%)";
       $("#nav-buttons").css("transform","translateX(-66%)");
-      console.log(user);
-      console.log(gamemaster);
       $("#login-message").html("Gamemaster Screen");
       $("#topright-text").html(username.replace(/['"]+/g, ''));
 }
@@ -173,13 +178,18 @@ $("#login").submit(function(event){
     url: "/login",
     data: formData,
     success: function(res){
-      $("#login-message").html(res);
+      $("#login-message").html(res.displayText);
       $("#nav-buttons").css("transform","translateX(-66%)");
       registerText.style.transform = "translateX(-1000%)"
       loginMessage.style.transform = "translateX(0%)";
-      if(res!=="That username doesn't exist!"&&res!=="Password Invalid"){
+      if(res.displayText!=="That username doesn't exist!"&&res.displayText!=="Password Invalid"){
         login.style.transform = "translateX(-1000%)";
+        if(res.type==="Gamemaster"||res.type==="Observer")
         gamemasterMenu.style.transform = "translateX(0%)";
+        else{
+          console.log(res);
+          playerLogin(res.player);
+        }
       }
       else{
         error();

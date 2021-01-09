@@ -82,9 +82,9 @@
             <section class="option player-choice" id="Tim">
                 Tim
             </section>
-            <section class="option" id="new-player-button">
+<!--             <section class="option" id="new-player-button">
                 Create New Character
-            </section>
+            </section> -->
         </div>
         <div class="menu player-menu" id="main-menu">
             <section class="option" id="continue">
@@ -260,7 +260,7 @@
         <script>
             const user = '<%- JSON.stringify(user) %>';
             const username = '<%- JSON.stringify(user.username) %>';
-            const gamemaster = '<%- JSON.stringify(user.gamemaster) %>';
+            const type = '<%- JSON.stringify(user.type) %>';
             let player = '<%- JSON.stringify(user.player) %>';
         </script>
     <%}else{%>

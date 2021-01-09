@@ -58,7 +58,7 @@ if(!listenerAdded){
       if(formData)
       $.ajax({
         method: "POST",
-        url: `/story/${chapter}/${day}/${time}/${player}/${formData}`,
+        url: `/story/gamemaster/${chapter}/${day}/${time}/${player}/${formData}`,
         success: function(res){
           text.push(res);
           nextLine();
@@ -84,7 +84,7 @@ const addText = function(){
   index++;
   }
   if(index==text.length){
-    return `<form id="user-input"><input type="text" name="user-input" class="boxtext" action="/story/${chapter}/${day}/${time}/${player}" method="POST"><input type="submit" value="Submit" id="submit"></form>`
+    return `<form id="user-input"><input type="text" name="user-input" class="boxtext" action="/story/gamemaster/${chapter}/${day}/${time}/${player}" method="POST"><input type="submit" value="Submit" id="submit"></form>`
   }
   else if(index<text.length){
     if(!text[index].startsWith("<")){

@@ -11,7 +11,6 @@ const router = express.Router();
 router.get("/:chapter/:day/:time/:player", async function (req,res){
     try{
         if(req.session.currentUser){
-            console.log(req.session.currentUser.gamemaster);
             if(req.session.currentUser.player){
                 id = req.session.currentUser.player._id;
             }else{
@@ -21,7 +20,7 @@ router.get("/:chapter/:day/:time/:player", async function (req,res){
         else{
             res.redirect("/");
         }
-        if((id === req.params.player)||(req.session.currentUser.gamemaster)){
+        if((id === req.params.player)||(req.session.currentUser.type==="Gamemaster"||req.session.currentUser.type==="Observer")){
             const player = await db.Player.findById(req.params.player);
             const story = await db.Story.findOne({chapter: req.params.chapter, day: req.params.day, time: req.params.time, player: player.name});
             let storyArray = story.story;
@@ -42,15 +41,21 @@ router.get("/:chapter/:day/:time/:player", async function (req,res){
     }
 })
 
-router.post("/:chapter/:day/:time/:player/:form", async function(req,res){
+router.post("/gamemaster/:chapter/:day/:time/:player/:form", async function(req,res){
     try{
         const player = await db.Player.findById(req.params.player.trim());
-        if(player.name=="Cameron")
-            sentMessage = await bot.channels.cache.get("664307849090039839").send(req.params.form);
-        if(player.name=="Kristian")
-            sentMessage = await bot.channels.cache.get("664627996174581800").send(req.params.form);
-        if(player.name=="Tim")
-            sentMessage = await bot.channels.cache.get("664628115984613406").send(req.params.form);
+        await bot.channels.cache.get(player.storyChannel).send(req.params.form);
+        //await db.Story.updateOne({chapter: req.params.chapter.trim(), day: req.params.day.trim(), time: req.params.time.trim(), player: player.name},{$push: {story: {story: req.params.form, id: sentMessage.id}}});
+        res.send(req.params.form)
+    }catch(err){
+        console.log(err);
+    }
+})
+
+router.post("/player/:chapter/:day/:time/:player/:form", async function(req,res){
+    try{
+        const player = await db.Player.findById(req.params.player.trim());
+        await bot.channels.cache.get(player.responseChannel).send(req.params.form);
         //await db.Story.updateOne({chapter: req.params.chapter.trim(), day: req.params.day.trim(), time: req.params.time.trim(), player: player.name},{$push: {story: {story: req.params.form, id: sentMessage.id}}});
         res.send(req.params.form)
     }catch(err){

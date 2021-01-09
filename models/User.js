@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema(
   {
     username: { type: String, required: true, unique: true},
     password: { type: String, required: true, minlength: 8 },
-    gamemaster: {type: Boolean, required: true},
+    type: {type: String, required: true}, /* Types: Player, Gamemaster, Observer */
     player: {type: mongoose.Schema.Types.ObjectId, ref: "Player"}
   },
   {timestamps: true}

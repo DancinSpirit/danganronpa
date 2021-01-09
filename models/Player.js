@@ -6,7 +6,9 @@ const playerSchema = new mongoose.Schema(
         characterName: {type: String},
         ultimateName: {type: String},
         avatar: {type: String},
-        discordId: {type: String}
+        discordId: {type: String},
+        storyChannel: {type: String},
+        responseChannel: {type: String}
     },
     {timestamps: true}
 )
