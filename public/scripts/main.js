@@ -34,7 +34,10 @@ const playerMenuState = function(){
   $("#gun-container").css("transform", "perspective(400px) rotatex(10deg) rotatey(-10deg)")
   $("#circle-container").css("transform", "perspective(400px) rotatex(10deg) rotatey(-10deg) translate(-3vw,-3.35vh)")
   $("#smallcircle-container").css("transform", "perspective(400px) rotatex(10deg) rotatey(-10deg) translate(-1.65vw,-1.75vh)")
+  if(!mobile)
   $(".player-menu").css("transform", "translateY(0%)");
+  else
+  $(".player-menu").css("transform", "translateY(50%)");
 }
 
 const loginState = function(){
