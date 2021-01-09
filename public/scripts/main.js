@@ -12,6 +12,7 @@ const gamemasterMenu = document.getElementById("gamemaster-menu");
 const start = document.getElementById("start");
 const musicButton = document.getElementById("music");
 const createCharacter = document.getElementById("new-player-button");
+let mobile = false;
 
 /* Test if Player and Gamemaster Exist */
 if(player)
@@ -95,7 +96,10 @@ const playerLogin = function(res){
   ($(".menu").css("transform", "translate(0%,1500%)"));
       loginMessage.style.transform = "translateX(0%)";
       $("#nav-buttons").css("transform","translateX(0%)");
+      if(!mobile)
       $("#login-message").html(res.ultimateName);
+      else
+      $("#login-message").html(res.ultimateName.substrring(21));
       $("#topright-text").html(res.characterName);
       player = res;
       $(".svg-container").addClass("svg-container-2");
@@ -132,8 +136,12 @@ if(player){
   start.style.transform = "translateX(-1000%)";
   //playerMenu.style.transform = "translateY(0%)";
   loginMessage.style.transform = "translateX(0%)";
+  if(!mobile)
   $("#nav-buttons").css("transform","translateX(0%)");
+  if(!mobile)
   $("#login-message").html(player.ultimateName);
+  else
+  $("#login-message").html(player.ultimateName.substring(21))
   $("#topright-text").html(player.characterName);
   playerMenuState();
   //Add a button to return to gamemaster screen if gamemaster
@@ -142,6 +150,7 @@ else if(user){
       start.style.transform = "translateX(-1000%)";
       gamemasterMenu.style.transform = "translateY(0%)";
       loginMessage.style.transform = "translateX(0%)";
+      if(!mobile)
       $("#nav-buttons").css("transform","translateX(-66%)");
       $("#login-message").html("Gamemaster Screen");
       $("#topright-text").html(username.replace(/['"]+/g, ''));
@@ -210,7 +219,7 @@ window.addEventListener("load", function() {
 });
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-    /* DO SOMETHING ELSE */
+    mobile = true;
 }
 
 musicButton.addEventListener("click", () => {
