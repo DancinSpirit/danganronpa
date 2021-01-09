@@ -55,6 +55,7 @@ if(!listenerAdded){
       event.preventDefault();
       let formData = $(this).serialize();
       formData = formData.substring(11);
+      if(formData)
       $.ajax({
         method: "POST",
         url: `/story/${chapter}/${day}/${time}/${player}/${formData}`,
@@ -64,6 +65,9 @@ if(!listenerAdded){
           $("#user-input").remove();
         }
       })
+      else{
+        index=text.length+1;
+      }
     })
   listenerAdded = true;
   }
