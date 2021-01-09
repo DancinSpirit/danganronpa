@@ -39,9 +39,9 @@ router.post("/login", async function(req,res){
             player: foundUser.player
         }
         if(!foundUser.gamemaster)
-        return res.send(foundUser.player.Ultimatename)
+            return res.send(foundUser.player.Ultimatename)
         else
-        return res.send("Gamemaster Screen")
+            return res.send("Gamemaster Screen")
     }catch(err){
         return res.send(err);
     }    

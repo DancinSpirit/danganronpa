@@ -12,10 +12,16 @@ const gamemasterMenu = document.getElementById("gamemaster-menu");
 const start = document.getElementById("start");
 const musicButton = document.getElementById("music");
 const createCharacter = document.getElementById("new-player-button");
+
+/* Test if Player and Gamemaster Exist */
 if(player)
 player = JSON.parse(player.replace("[","").replace("]",""));
 if(gamestate)
 gamestate = JSON.parse(gamestate);
+
+const playSound = function(){
+
+}
 
 const playerMenuState = function(){
   $(".svg-container").css("right", "-1%");
@@ -56,16 +62,11 @@ $("#continue").on("click", ()=>{
   window.open(`/story/${gamestate.currentChapter}/${gamestate.currentDay}/${gamestate.currentTime}/${player._id}`,'_self',false);
 })
 
-localStorage.email = 'none';
-let chapter = 0;
-let day = 0;
-for(let x=0; x<allAudio.length; x++){
- allAudio[x].volume = 0.2; 
-}
-let audio = document.getElementById("login-music");
+$("audio").prop("volume", 0.2);
+
 let musicOn = true;
 const gun = document.getElementById("Gunshot");
-
+let audio = document.getElementById("login-music");
 const logout = document.getElementById("logout");
 
 $("#player-create").submit(function(event){
@@ -213,16 +214,17 @@ musicButton.addEventListener("click", () => {
   }
 });
 
-start.addEventListener("click", ()=>{
-    start.style.transform = "translateX(-1000%)";
-    login.style.transform = "translateY(0%)";
-    registerText.style.transform = "translateX(0%)";
+$("#start").on("click", ()=>{
+  $("#start").css("transform", "translateX(-1000%)");
+  $("#login").css("transform", "translateY(0%)");
+  $("#register-text").css("transform", "translateX(0%)")
+  $("")
     gun.play();
     if(musicOn)
     audio.play();
 });
 
-let resizeTimer;
+/* Stop Animation When Resizing */
 window.addEventListener("resize", () => {
   document.body.classList.add("resize-animation-stopper");
   clearTimeout(resizeTimer);
@@ -231,6 +233,7 @@ window.addEventListener("resize", () => {
   }, 400);
 });
 
+/* Sound Stuff */
 const sound = document.getElementById("Selected");
 const sound2 = document.getElementById("Selected2");
 const sound3 = document.getElementById("Selected3");

@@ -36,11 +36,23 @@
     </button>
   <div id=textbox>
     <div id=bottom>
- </div>
- <!-- I have NO idea why the fucking ejs won't compile correctly but this is the only way to egt it to work -->
- <div id=hidden-text >
-    <%=story%>
- </div>
     </div>
+    <!-- I have NO idea why the fucking ejs won't compile correctly but this is the only way to egt it to work -->
+    <div class="hidden-text" id="story">
+      <%=story%>
+    </div>
+    <div class="hidden-text" id="chapter">
+      <%=chapter%>
+    </div>
+    <div class="hidden-text" id="day">
+      <%=day%>
+    </div>
+    <div class="hidden-text" id="time">
+      <%=time%>
+    </div>
+    <div class="hidden-text" id="player">
+      <%=player%>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 let song = document.getElementById("morning");
 const button = document.querySelector("button");
 const allAudio = document.querySelectorAll("audio");
+let listenerAdded = false;
 
 $("body").on("keydown", function(e){
   if(e.keyCode == 17){
@@ -13,7 +14,12 @@ $("body").on("keypress", function(e){
   }
 })
 
-let story = $("#hidden-text").text().replace(/(\r\n|\n|\r)/gm, "").substring(4);
+let story = $("#story").text().replace(/(\r\n|\n|\r)/gm, "").substring(6);
+let chapter = $("#chapter").text();
+let day = $("#day").text();
+let time = $("#time").text();
+let player = $("#player").text();
+
 let storyArray = story.split(",,");
 let text = storyArray;
 let index = -1;
@@ -37,20 +43,50 @@ const nextLine =  async function(){
   if(song.paused&&music){
     song.play();
   }
-  let text= await addText();
-$("#bottom").append(text);
+  let returnedText= await addText();
+$("#bottom").append(returnedText);
+
+if(!listenerAdded){
+  if($("#user-input").length){
+    $("#user-input").submit(function(event){
+      index--;
+      index--;
+      listenerAdded = false;
+      event.preventDefault();
+      let formData = $(this).serialize();
+      formData = formData.substring(11);
+      $.ajax({
+        method: "POST",
+        url: `/story/${chapter}/${day}/${time}/${player}/${formData}`,
+        success: function(res){
+          text.push(res);
+          nextLine();
+          $("#user-input").remove();
+        }
+      })
+    })
+  listenerAdded = true;
+  }
+}
 $("#textbox").scrollTop($("#textbox").prop("scrollHeight"));
 }
 
 $("#textbox").on("click",nextLine)
 
 const addText = function(){
+  if(index<=text.length){
   index++;
-  if(!text[index].startsWith("<")){
-      return `<p class='boxtext'>${text[index]}</p>`;
   }
-  else{
-      return specialCommand(text[index]);
+  if(index==text.length){
+    return `<form id="user-input"><input type="text" name="user-input" class="boxtext" action="/story/${chapter}/${day}/${time}/${player}" method="POST"><input type="submit" value="Submit" id="submit"></form>`
+  }
+  else if(index<text.length){
+    if(!text[index].startsWith("<")){
+        return `<p class='boxtext'>${text[index]}</p>`;
+    }
+    else{
+        return specialCommand(text[index]);
+    }
   } 
 }
 
@@ -90,4 +126,5 @@ const specialCommand = async function(text){
     return "";
   }
 }
+
 

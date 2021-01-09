@@ -74,6 +74,13 @@ choice{
   color: white;
 }
 
-#hidden-text{
+.hidden-text{
     display: none;
 }
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+
