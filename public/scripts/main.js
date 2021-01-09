@@ -152,7 +152,7 @@ if(player){
   }
   else{
   $("#nav-buttons").css("transform","translateX(-66%)");
-  $("#login-message").html(player.ultimateName.substring(21))
+  $("#login-message").html(player.ultimateName.substring(20))
   }
   $("#topright-text").html(player.characterName);
   playerMenuState();
