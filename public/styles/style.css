@@ -9,12 +9,15 @@
     box-sizing: border-box;
 }
 
+html, body{
+     height: 100%; 
+}
+
 body{
     background-image: url('/visuals/HopesPeak.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
-    min-height: 100vh;
     backdrop-filter: blur(2px);
     overflow: hidden;
     transition: background-image 0.2s ease-in-out;
