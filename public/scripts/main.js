@@ -99,11 +99,14 @@ $(".player-choice").click(function(e){
 const playerLogin = function(res){
   ($(".menu").css("transform", "translate(0%,1500%)"));
       loginMessage.style.transform = "translateX(0%)";
+      if(!mobile){
       $("#nav-buttons").css("transform","translateX(0%)");
-      if(!mobile)
       $("#login-message").html(res.ultimateName);
-      else
-      $("#login-message").html(res.ultimateName.substrring(21));
+      }
+      else{
+      $("#nav-buttons").css("transform","translateX(-66%)");
+      $("#login-message").html(res.ultimateName.substrring(20));
+      }
       $("#topright-text").html(res.characterName);
       player = res;
       $(".svg-container").addClass("svg-container-2");
@@ -140,12 +143,14 @@ if(player){
   start.style.transform = "translateX(-1000%)";
   //playerMenu.style.transform = "translateY(0%)";
   loginMessage.style.transform = "translateX(0%)";
-  if(!mobile)
+  if(!mobile){
   $("#nav-buttons").css("transform","translateX(0%)");
-  if(!mobile)
   $("#login-message").html(player.ultimateName);
-  else
+  }
+  else{
+  $("#nav-buttons").css("transform","translateX(-66%)");
   $("#login-message").html(player.ultimateName.substring(21))
+  }
   $("#topright-text").html(player.characterName);
   playerMenuState();
   //Add a button to return to gamemaster screen if gamemaster
@@ -154,7 +159,6 @@ else if(user){
       start.style.transform = "translateX(-1000%)";
       gamemasterMenu.style.transform = "translateY(0%)";
       loginMessage.style.transform = "translateX(0%)";
-      if(!mobile)
       $("#nav-buttons").css("transform","translateX(-66%)");
       $("#login-message").html("Gamemaster Screen");
       $("#topright-text").html(username.replace(/['"]+/g, ''));
