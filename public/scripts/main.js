@@ -14,6 +14,7 @@ const musicButton = document.getElementById("music");
 const createCharacter = document.getElementById("new-player-button");
 let mobile = false;
 
+$("body").css("height",window.innerHeight);
 /* Test if Player and Gamemaster Exist */
 if(player)
 player = JSON.parse(player.replace("[","").replace("]",""));
