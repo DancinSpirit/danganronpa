@@ -92,7 +92,7 @@ $(".player-choice").click(function(e){
 })
 
 const playerLogin = function(res){
-  ($(".menu").css("transform", "translate(0%,1000%)"));
+  ($(".menu").css("transform", "translate(0%,1500%)"));
       loginMessage.style.transform = "translateX(0%)";
       $("#nav-buttons").css("transform","translateX(0%)");
       $("#login-message").html(res.ultimateName);
@@ -235,6 +235,7 @@ $("#start").on("click", ()=>{
 });
 
 /* Stop Animation When Resizing */
+let resizeTimer;
 window.addEventListener("resize", () => {
   document.body.classList.add("resize-animation-stopper");
   clearTimeout(resizeTimer);
