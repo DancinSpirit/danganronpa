@@ -66,7 +66,9 @@ if(!listenerAdded){
         }
       })
       else{
+        $("#user-input").unbind('submit');
         index=text.length+1;
+
       }
     })
   listenerAdded = true;
