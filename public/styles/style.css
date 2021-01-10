@@ -130,6 +130,8 @@ button, a{
   transition-duration: 1000ms;
   height: 65vh;
   width: 55vw;
+  right: 22.5%;
+  top: 21.5%;
 }
 
 #gun-container{
