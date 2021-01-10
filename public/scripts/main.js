@@ -32,8 +32,10 @@ const playerMenuState = function(){
   $("#smallcircle-container").css("transform", "perspective(400px) rotatex(10deg) rotatey(-10deg) translate(-1.65vw,-1.75vh)")
   if(!mobile)
   $(".player-menu").css("transform", "translateY(0%)");
-  else
-  $(".player-menu").css("transform", "translateY(-50%)");
+  else{
+  $(".player-menu").css("transform", "translateY(-100%)");
+  $(".player-menu").css("width", "50%");
+  }
 }
 
 const loginState = function(){
