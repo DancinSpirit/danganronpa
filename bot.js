@@ -26,7 +26,7 @@ bot.on("message", async (msg) =>{
 
 bot.on('messageUpdate', async (oldMessage, newMessage) => {
 let player = false;
-player = await db.Player.findOne({storyChannel: msg.channel.id});
+player = await db.Player.findOne({storyChannel: newMessage.channel.id});
 if(player){
     const story = await db.Story.updateOne({chapter: 1, day: 1, time: "morning", player: player.name, story: {$elemMatch: {id: newMessage.id}}}, {$set: {"story.$.story" : newMessage.content}});
     console.log(story);
@@ -38,7 +38,7 @@ else{
 
 bot.on("messageDelete", async (message)=>{
 let player = false;
-player = await db.Player.findOne({storyChannel: msg.channel.id});
+player = await db.Player.findOne({storyChannel: message.channel.id});
 if(player){
     const story = await db.Story.updateOne({chapter: 1, day: 1, time: "morning", player: player.name, story: {$elemMatch: {id: message.id}}}, {$pull: {story: {id: message.id}}});
     console.log(story);
