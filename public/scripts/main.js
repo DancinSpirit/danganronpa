@@ -33,7 +33,7 @@ const playerMenuState = function(){
   if(!mobile)
   $(".player-menu").css("transform", "translateY(0%)");
   else{
-  $(".player-menu").css("transform", "translateY(-150%)");
+  $(".player-menu").css("transform", "translateY(-160%)");
   $(".player-menu").css("width", "60%");
   }
 }
