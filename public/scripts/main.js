@@ -14,6 +14,11 @@ const musicButton = document.getElementById("music");
 const createCharacter = document.getElementById("new-player-button");
 let mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+if(mobile){
+  $("body").css("right","22.5%");
+  $("body").css("top","21.5%");
+}
+
 /* Test if Player and Gamemaster Exist */
 if(player)
 player = JSON.parse(player.replace("[","").replace("]",""));
