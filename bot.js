@@ -14,13 +14,21 @@ bot.on("message", async (msg) =>{
     let player = false;
     player = await db.Player.findOne({storyChannel: msg.channel.id});
     if(player){
+        if(msg.content != "<END>"){
         const story = await db.Story.findOne({chapter: 1, day: 1, time: "morning", player: player.name});
-            story.story.push({story: msg.content, id: msg.id});
-            console.log("Added " + msg.content + " to story.");
-            await story.save();
+        story.story.push({story: msg.content, id: msg.id});
+        console.log("Added " + msg.content + " to story.");
+        await story.save();
+        }else{
+            player.addRole('660664223625641994');
+        }
     }
     else{
-        
+    //This is for response channel
+    player = await db.Player.findOne({responseChannel: msg.channel.id});
+    if(player){
+        player.removeRole('660664223625641994');
+    }    
     }
 })
 
