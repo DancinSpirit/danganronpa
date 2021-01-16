@@ -20,7 +20,7 @@ bot.on("message", async (msg) =>{
         console.log("Added " + msg.content + " to story.");
         await story.save();
         }else{
-            let role = await msg.guild.roles.cache.get('660664223625641994');
+            let role = await msg.guild.roles.fetch('660664223625641994');
             let account = await msg.guild.members.fetch(player.discordId);
             account.roles.add(role);
         }
@@ -29,7 +29,7 @@ bot.on("message", async (msg) =>{
     //This is for response channel
     player = await db.Player.findOne({responseChannel: msg.channel.id});
     if(player){
-        let role = msg.guild.roles.cache.get('660664223625641994');
+        let role = await msg.guild.roles.fetch('660664223625641994');
         msg.member.roles.remove(role);
     }    
     }
