@@ -22,6 +22,8 @@ bot.on("message", async (msg) =>{
         }else{
             let role = msg.member.roles.cache.get('660664223625641994');
             let account = msg.guild.members.fetch(player.discordId);
+            console.log(account);
+            console.log((await account).toJSON());
             account.roles.add(role);
         }
     }
