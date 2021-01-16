@@ -20,14 +20,16 @@ bot.on("message", async (msg) =>{
         console.log("Added " + msg.content + " to story.");
         await story.save();
         }else{
-            msg.member.roles.add('660664223625641994');
+            role = get(msg.guild.roles, id='660664223625641994');
+            msg.member.roles.add(role);
         }
     }
     else{
     //This is for response channel
     player = await db.Player.findOne({responseChannel: msg.channel.id});
     if(player){
-        msg.member.roles.remove('660664223625641994');
+        role = get(msg.guild.roles, id='660664223625641994');
+        msg.member.roles.remove(role);
     }    
     }
 })
