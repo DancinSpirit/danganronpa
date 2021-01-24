@@ -5,14 +5,19 @@ const bot = new Client({
 const TOKEN = process.env.TOKEN;
 const db = require("./models");
 
+bot.loggedIn = false;
+
 bot.login(TOKEN);
 
 bot.reminder = function(){
-    bot.channels.cache.get('799874873714802739').send(`<@&${'660664223625641994'}> This is an end of day reminder reminding you that it's your turn! Do note that this is currently a test message, but it should still technically be true! ^_^`);
+    bot.channels.cache.get('799874873714802739').send(`<@&${'660664223625641994'}> This is an end of day reminder reminding you that it's your turn! Do note that this message, due to unfortunate limitations involving discord and heroku (the hosting service), will also trigger whenever I reset the website, which happens often when testing new website builds.`);
 }
 
 bot.on("ready", ()=>{
+    if(bot.loggedIn)
     bot.reminder();
+    else
+    bot.loggedIn = true;
     console.log(`Logged In as ${bot.user.tag}`)
 });
 
