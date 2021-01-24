@@ -7,16 +7,7 @@ const db = require("./models");
 
 bot.login(TOKEN);
 
-bot.reminderBot = false;
-
-bot.reminder = function(){
-    bot.channels.cache.get('799874873714802739').send(`<@&${'660664223625641994'}> This is an end of day reminder reminding you that it's your turn! Do note that this message, due to unfortunate limitations involving discord and heroku (the hosting service), will also trigger whenever I reset the website, which happens often when testing new website builds.`);
-}
-
 bot.on("ready", ()=>{
-    if(bot.reminderBot)
-    bot.reminder();
-    else
     console.log(`Logged In as ${bot.user.tag}`)
 });
 
