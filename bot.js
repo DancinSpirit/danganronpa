@@ -16,6 +16,7 @@ bot.reminder = function(){
 bot.on("ready", ()=>{
     if(bot.reminderBot)
     bot.reminder();
+    else
     console.log(`Logged In as ${bot.user.tag}`)
 });
 
