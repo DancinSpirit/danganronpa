@@ -5,8 +5,6 @@ const bot = new Client({
 const TOKEN = process.env.TOKEN;
 const db = require("./models");
 
-bot.loggedIn = false;
-
 bot.login(TOKEN);
 
 bot.reminder = function(){
@@ -14,10 +12,6 @@ bot.reminder = function(){
 }
 
 bot.on("ready", ()=>{
-    if(bot.loggedIn){
-    bot.reminder();
-    bot.destroy()
-    }
     console.log(`Logged In as ${bot.user.tag}`)
 });
 
