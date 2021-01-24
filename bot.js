@@ -14,10 +14,10 @@ bot.reminder = function(){
 }
 
 bot.on("ready", ()=>{
-    if(bot.loggedIn)
+    if(bot.loggedIn){
     bot.reminder();
-    else
-    bot.loggedIn = true;
+    bot.destroy()
+    }
     console.log(`Logged In as ${bot.user.tag}`)
 });
 
