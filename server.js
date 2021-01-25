@@ -53,6 +53,8 @@ app.use("/players", ctrl.players);
 
 app.use("/story", ctrl.story);
 
+app.use("/trial", ctrl.trial);
+
 app.post("/logout", function(req,res){
     req.session.destroy();
     return res.send("Logged Out");
