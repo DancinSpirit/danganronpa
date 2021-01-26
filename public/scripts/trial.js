@@ -35,6 +35,10 @@ $("body").on("keypress", function(e){
 })
 
 let story = $("#story").text().replace(/(\r\n|\n|\r)/gm, "").substring(6);
+let chapter = $("#chapter").text();
+let day = $("#day").text();
+let time = $("#time").text();
+let player = $("#player").text();
 
 let storyArray = story.split(",,");
 let text = storyArray;

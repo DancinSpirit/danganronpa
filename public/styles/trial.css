@@ -288,6 +288,7 @@ i{
     display: flex;
     flex-direction: column;
     background-color: #403B3F;
+    color: white;
     border-bottom: solid white;
     transition-duration: 1000ms;
     transform: translateY(1000%);
