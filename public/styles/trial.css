@@ -182,6 +182,7 @@ i{
 #momentum-section{
     height: 10%;
     background-color:#403B3F;
+    color: white;
     border-bottom: solid white;
     display: flex;
     justify-content: center;
