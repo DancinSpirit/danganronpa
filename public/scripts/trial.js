@@ -1,3 +1,4 @@
+const dawnSong = document.getElementById("dawn");
 $(".truth-bullet").hover(function(){
  $(this).find(".Bullet1").attr("src","/visuals/Bullet1.png");
  $(this).find(".Bullet3").attr("src","/visuals/Bullet3.png");
@@ -11,5 +12,5 @@ $(".truth-bullet").hover(function(){
 })
 
 $("body").on("click",()=>{
-    $("#dawn").play();
+    dawnSong.play();
 })
