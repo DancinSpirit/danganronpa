@@ -48,9 +48,6 @@ for(let x=0; x<allAudio.length; x++){
 }
 
 const nextLine =  async function(){
-  if(song.paused&&music){
-    song.play();
-  }
   let returnedText= await addText();
 $("#bottom").append(returnedText);
 
