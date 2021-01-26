@@ -11,7 +11,7 @@ $(".truth-bullet").hover(function(){
     $(this).css("transform", "scale(1,1)")
 })
 
-$("#dawnSong").prop("volume", 0.2);
+dawnSong.volume = 0.2;
 
 $("body").on("click",()=>{
     dawnSong.play();
