@@ -11,5 +11,5 @@ $(".truth-bullet").hover(function(){
 })
 
 $("body").on("click",()=>{
-    audio.play();
+    $("#dawn").play();
 })
