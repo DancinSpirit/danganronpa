@@ -9,3 +9,7 @@ $(".truth-bullet").hover(function(){
     $(this).find(".bullet-text").css("background-image", "url('/visuals/Bullet2Unselected.png')")
     $(this).css("transform", "scale(1,1)")
 })
+
+$("body").on("click",()=>{
+    audio.play();
+})
