@@ -3,12 +3,14 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const db = require("../models");
 
+/* Home Page */
 router.get("/", async function(req,res){
     const currentGameState = await db.Gamestate.findOne({});
     console.log(currentGameState);
     res.render("main",{gamestate: currentGameState});
 });
 
+/* Register Route */
 router.post("/register", async function(req,res){
     try{
         const foundUser = await db.User.findOne({username: req.body.username});
@@ -26,6 +28,7 @@ router.post("/register", async function(req,res){
     }    
 });
 
+/* Login Route */
 router.post("/login", async function(req,res){
     try{
         const foundUser = await db.User.findOne({username: req.body.username});
@@ -40,6 +43,7 @@ router.post("/login", async function(req,res){
             player: foundPlayer
         }
         if(foundUser.type==="Player"){
+            console.log(foundPlayer);
             return res.send({displayText: foundUser.player.Ultimatename, type: foundUser.type, player: foundPlayer});
         }
         else

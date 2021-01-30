@@ -24,7 +24,7 @@ bot.on("message", async (msg) =>{
             let role = await msg.guild.roles.fetch('660664223625641994');
             let account = await msg.guild.members.fetch(player.discordId);
             account.roles.add(role);
-            bot.delete_message(msg);
+            bot.delete_message(msg.id);
         }
     }
     else{

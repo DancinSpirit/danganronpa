@@ -38,7 +38,7 @@ authRequired = function(req,res,next){
     if(req.session.currentUser){
         next();
     } else {
-        res.redirect("/login");
+        res.redirect("/");
     }
 }
 /* Check if Gamemaster */
@@ -46,7 +46,7 @@ gamemasterRequired = function(req,res,next){
     if(req.session.currentUser.gamemaster){
         next();
     } else {
-        res.redirect("/login");
+        res.redirect("/");
     }  
 }
 app.use("/players", ctrl.players);

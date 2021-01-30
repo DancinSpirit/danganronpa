@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require("../models");
 
+/* Create Player */
 router.post("/", async function(req,res){
     try{
         const createdPlayer = await db.Player.create(req.body);

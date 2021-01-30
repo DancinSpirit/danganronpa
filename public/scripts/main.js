@@ -1,17 +1,3 @@
-const button = document.querySelector("button");
-const login = document.getElementById("login");
-const loginMessage = document.getElementById("login-message");
-const registration = document.getElementById("registration");
-const registerText = document.getElementById("register-text");
-const registrationText = document.getElementById("registration-text");
-const registrationMessage = document.getElementById("registration-message");
-const loginButton = document.getElementById("login-button");
-const allAudio = document.querySelectorAll("audio");
-const options = document.getElementsByClassName("option");
-const gamemasterMenu = document.getElementById("gamemaster-menu");
-const start = document.getElementById("start");
-const musicButton = document.getElementById("music");
-const createCharacter = document.getElementById("new-player-button");
 let mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 if(mobile){
@@ -25,8 +11,23 @@ player = JSON.parse(player.replace("[","").replace("]",""));
 if(gamestate)
 gamestate = JSON.parse(gamestate);
 
-const playSound = function(){
+/* Gonna need a state-transferring function that does the transition adds a class that makes transitions not possible and then switches to the new state then removes the non-transition class */
 
+const startState = function(){
+  $("#start").css("transform", "translate(0,0)");
+  $(".bottomright-text").css("transform", "translateX(1000%)");
+  $(".menu").css("transform", "translate(0%,1000%)");
+  $("#register-text").css("transform", "translate(0%)");
+  $("#register-text").html("Logged Out");
+  $("#nav-buttons").css("transform", "translateX(-88%)");
+  $("#topright-text").html("Login Screen");
+  $("#continue").unbind("click");
+  $(".svg-container").css("right", "");
+  $(".svg-container").css("top", "");
+  $("#gun-container").css("transform", "")
+  $("#circle-container").css("transform", "translate(-3vw,-3.35vh)")
+  $("#smallcircle-container").css("transform", "translate(-1.65vw,-1.75vh)")
+  $(".player-menu").css("transform", "translateY(1000%)");
 }
 
 const playerMenuState = function(){
@@ -57,15 +58,7 @@ const logoutFunction = function(){
     method: "POST",
     url: "/logout",
     success: function(res){
-      $(".bottomright-text").css("transform", "translateX(1000%)");
-      $(".menu").css("transform", "translate(0%,1000%)");
-      $("#start").css("transform", "translate(0%)");
-      $("#register-text").css("transform", "translate(0%)");
-      $("#register-text").html("Logged Out");
-      $("#nav-buttons").css("transform", "translateX(-88%)");
-      $("#topright-text").html("Login Screen");
-      $("#continue").unbind("click");
-      loginState();
+      startState();
     }
   })
 }
@@ -146,9 +139,9 @@ if(player){
   $("#continue").on("click", ()=>{
     window.open(`/story/${gamestate.currentChapter}/${gamestate.currentDay}/${gamestate.currentTime}/${player._id}`,'_self',false);
   })
-  start.style.transform = "translateX(-1000%)";
+  $("#start").css("transform", "translateX(-1000%)");
   //playerMenu.style.transform = "translateY(0%)";
-  loginMessage.style.transform = "translateX(0%)";
+  $("#loginMessage").css("transform", "translateX(0%)");
   if(!mobile){
   $("#nav-buttons").css("transform","translateX(0%)");
   $("#login-message").html(player.ultimateName);
@@ -221,26 +214,8 @@ $("#login").submit(function(event){
   }) 
 })
 
-registerText.addEventListener("click", ()=>{
-    registerText.style.transform = "translateX(-500%)"
-    registrationText.style.transform = "translateX(0%)"
-    login.style.transform = "translateX(-1000%)";
-    registration.style.transform = "translateY(0%)";
-})
-
 window.addEventListener("load", function() {
   document.body.classList.remove("preload");
-});
-
-musicButton.addEventListener("click", () => {
-  if (audio.paused) {
-    audio.play();
-    musicOn = true;
-    
-  } else {
-    musicOn = false;
-    audio.pause();
-  }
 });
 
 $("#start").on("click", ()=>{
@@ -264,7 +239,7 @@ window.addEventListener("resize", () => {
 });
 
 /* Sound Stuff */
-const sound = document.getElementById("Selected");
+/* const sound = document.getElementById("Selected");
 const sound2 = document.getElementById("Selected2");
 const sound3 = document.getElementById("Selected3");
 const sound4 = document.getElementById("Selected4");
@@ -293,4 +268,4 @@ for (var i = 0; i < options.length; i++) {
         currenIndex=0;
       }
     });
-}
+} */
